@@ -31,11 +31,13 @@ public class Proj03Runner {
 class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
 
     JEditorPane html;
+    JTextField address;
     ArrayList<URL> bkHistory = new ArrayList<URL>(); //백 히스토
     Stack<URL> toForward = new Stack<URL>(); //넥스트 유알
     URL url;
-    int curIndex = 0;
+    String myURL;
     int forwardCT = 0;
+    HtmlHandler y;
 
     public HtmlHandler(String website) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +47,8 @@ class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
             if (website != null) {
 
                 url = new URL(website);
+                System.out.println(website);
+
 
                 JEditorPane html = new JEditorPane(website);
                 html.setEditable(false);
@@ -62,6 +66,7 @@ class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
                 forwardBtn.setActionCommand("Forward");
                 backBtn.addActionListener(this);
                 forwardBtn.addActionListener(this);
+                address.addActionListener(this);
 
                 panel.add(backBtn);
                 panel.add(address);
@@ -90,7 +95,6 @@ class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
 
             try {
                 this.bkHistory.add(e.getURL());
-                this.curIndex = this.curIndex + 1;
                 this.html.setPage(e.getURL());
 
                 System.out.println(bkHistory); // 클릭이 된후에 보여지는 리스트 ===================
@@ -118,7 +122,7 @@ class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
                     // System.out.println("--");
                 }
             } else {
-                System.out.println("no more old pages");
+                System.out.println("There is no more page to go back.");
             }
         } else if (e.getActionCommand().equals("Forward")) {
             if (!this.toForward.isEmpty()) {
@@ -131,10 +135,17 @@ class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
                 } catch (Exception io) {
                     io.printStackTrace();
                 }
+            } else {
+                System.out.println("There is no more page to go forward.");
             }
 
-        }
+        } else {
+            myURL = new String (this.address.getText());
+            System.out.println(myURL);
 
+            this. y = new HtmlHandler(myURL);
+
+        }
 
     }
 
