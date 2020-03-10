@@ -86,8 +86,6 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
-            System.out.println("history: " + bkHistory);        //ERASE later
         }
     }
 
@@ -121,13 +119,12 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
 
                 System.out.println("old: " + position);
                 url = new URL(address.getText());
-                //this.position = this.bkHistory.size() - this.position;
 
                 this.position = this.position + 1;
                 this.bkHistory.add(this.position, url);
+                this.bkHistory.subList(this.position+1, this.bkHistory.size()).clear();
 
                 System.out.println("new: " + position);                       //ERASE LATER
-
 
             }
 
