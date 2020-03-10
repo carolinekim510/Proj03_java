@@ -17,7 +17,6 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
     ArrayList<URL> bkHistory = new ArrayList<URL>(); //백 히스토
     int position = 0;
     boolean addHistory = true;
-    int ct = this.bkHistory.size();
 
     public HtmlHandler(String website) {
         this.website = website;
@@ -120,14 +119,14 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
                 }
             } else {
 
-                //System.out.println("old: " + position);
+                System.out.println("old: " + position);
                 url = new URL(address.getText());
                 //this.position = this.bkHistory.size() - this.position;
 
                 this.position = this.position + 1;
                 this.bkHistory.add(this.position, url);
 
-                //System.out.println("new: " + position);                       //ERASE LATER
+                System.out.println("new: " + position);                       //ERASE LATER
 
 
             }
