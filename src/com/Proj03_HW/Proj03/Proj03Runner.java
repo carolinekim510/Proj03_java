@@ -18,4 +18,3 @@ public class Proj03Runner {
         }
     }
 }
-
